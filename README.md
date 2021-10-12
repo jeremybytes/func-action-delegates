@@ -1,8 +1,10 @@
 Get Func-y: Understanding Delegates in C#
 -------------------
-Delegates are the gateway to functional programming. So let's understand delegates and how we can change the way we program by using functions as parameters, return types, variables, and properties. In addition, we'll see how the built in delegate types, Func and Action, are waiting to make our lives easier. By the time we're done, we'll see how delegates can add elegance, extensibility, and safety to our programming. And as a bonus, you'll have a few functional programming concepts to take with you.  
+Delegates are the gateway to functional programming. So let’s understand delegates and how we can change the way we program by using functions as parameters, return types, variables, and properties. In addition, we’ll see how the built in delegate types, Func and Action, are waiting to make our lives easier. By the time we’re done, we’ll see how delegates can add elegance, extensibility, and safety to our programming. And as a bonus, you’ll have a few functional programming concepts to take with you.  
 
-This repository contains slides and code samples for a live presentation. You can find articles and a video series on the topic below.
+This repository contains slides and code samples for a live presentation. You can find articles and a video series on the topic below.  
+
+*The code is currently uses .NET 5.0.*  
 
 **Presentation Recordings:**  
 * [NDC London](https://www.youtube.com/watch?v=cQ5qF9PmyCQ) - Recorded Jan 2017  

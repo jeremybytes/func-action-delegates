@@ -1,20 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Linq;
-using System.Collections.Generic;
 
 namespace delegates
 {
     public partial class MainWindow : Window
     {
-        private Func<Person, string> formatter;
-        //private Action<List<Person>> processor;
-
         public MainWindow()
         {
             InitializeComponent();
             PersonListBox.ItemsSource = People.GetPeople();
         }
+
+        private Func<Person, string> formatter;
+        //private Action<List<Person>> processor;
 
         private Func<Person, string> GetFormatter()
         {
@@ -23,6 +23,7 @@ namespace delegates
 
             if (FamilyNameStringButton.IsChecked.Value)
                 return p => p.FamilyName.ToUpper();
+
 
             if (GivenNameStringButton.IsChecked.Value)
                 return p => p.GivenName.ToLower();
@@ -33,7 +34,7 @@ namespace delegates
             return null;
         }
 
-        private Action<List<Person>> AssignAction()
+        private Action<List<Person>> GetProcessor()
         {
             Action<List<Person>> action = null;
 
@@ -63,20 +64,21 @@ namespace delegates
         private void ProcessDataButton_Click(object sender, RoutedEventArgs e)
         {
             OutputList.Items.Clear();
-
             var people = People.GetPeople();
 
             if (StringExpander.IsExpanded)
             {
                 formatter = GetFormatter();
                 foreach (var person in people)
+                {
                     AddToList(person.ToString(formatter));
+                }
             }
             if (ActionExpander.IsExpanded)
             {
                 // DO NOT DO THIS
-                // unless you hate your co-workers
-                AssignAction()?.Invoke(people);
+                // (unless you hate your co-workers)
+                GetProcessor()?.Invoke(people);
             }
         }
 
