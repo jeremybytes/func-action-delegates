@@ -4,7 +4,7 @@ Delegates are the gateway to functional programming. So let’s understand deleg
 
 This repository contains slides and code samples for a live presentation. You can find articles and a video series on the topic below.  
 
-*The code currently uses .NET 5.0.*  
+*The code currently uses .NET 6.0.*  
 
 **Presentation Recordings:**  
 * [NDC London](https://www.youtube.com/watch?v=cQ5qF9PmyCQ) - Recorded Jan 2017  

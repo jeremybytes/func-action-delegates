@@ -52,7 +52,7 @@
 
             if (BestCommanderCheckBox.IsChecked.Value)
                 processor += p => MessageBox.Show(
-                    p.OrderByDescending(r => r.Rating).First().ToString());
+                    p.MaxBy(r => r.Rating)!.ToString());
 
             if (FirstLettersCheckBox.IsChecked.Value)
                 processor += p =>

@@ -1,90 +1,84 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Linq;
+﻿using System.Windows;
 
-namespace delegates
+namespace delegates;
+
+public partial class MainWindow : Window
 {
-    public partial class MainWindow : Window
+    private Func<Person, string>? formatter;
+    //private Action<List<Person>>? processor;
+
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-            PersonListBox.ItemsSource = People.GetPeople();
-        }
+        InitializeComponent();
+        PersonListBox.ItemsSource = People.GetPeople();
+    }
 
-        private Func<Person, string> formatter;
-        //private Action<List<Person>> processor;
+    private Func<Person, string>? GetFormatter()
+    {
+        if (DefaultStringButton.IsChecked!.Value)
+            return p => p.ToString();
 
-        private Func<Person, string> GetFormatter()
-        {
-            if (DefaultStringButton.IsChecked.Value)
-                return p => p.ToString();
+        if (FamilyNameStringButton.IsChecked!.Value)
+            return p => p.FamilyName.ToUpper();
 
-            if (FamilyNameStringButton.IsChecked.Value)
-                return p => p.FamilyName.ToUpper();
+        if (GivenNameStringButton.IsChecked!.Value)
+            return p => p.GivenName.ToLower();
 
+        if (FullNameStringButton.IsChecked!.Value)
+            return p => $"{p.FamilyName}, {p.GivenName}";
 
-            if (GivenNameStringButton.IsChecked.Value)
-                return p => p.GivenName.ToLower();
+        return null;
+    }
 
-            if (FullNameStringButton.IsChecked.Value)
-                return p => $"{p.FamilyName}, {p.GivenName}";
+    private Action<List<Person>>? AssignAction()
+    {
+        Action<List<Person>>? action = null;
 
-            return null;
-        }
+        if (BestCommanderCheckBox.IsChecked!.Value)
+            action += p => MessageBox.Show(
+                p.MaxBy(r => r.Rating)!.ToString());
 
-        private Action<List<Person>> GetProcessor()
-        {
-            Action<List<Person>> action = null;
+        if (AverageRatingCheckBox.IsChecked!.Value)
+            action += p => AddToList(
+                p.Average(r => r.Rating).ToString("#.#"));
 
-            if (BestCommanderCheckBox.IsChecked.Value)
-                action += p => MessageBox.Show(
-                    p.OrderByDescending(r => r.Rating).First().ToString());
+        if (EarliestStartDateCheckBox.IsChecked!.Value)
+            action += p => AddToList(
+                p.Min(s => s.StartDate).ToString("d"));
 
-            if (AverageRatingCheckBox.IsChecked.Value)
-                action += p => AddToList(
-                    p.Average(r => r.Rating).ToString("#.#"));
-
-            if (EarliestStartDateCheckBox.IsChecked.Value)
-                action += p => AddToList(
-                    p.Min(s => s.StartDate).ToString("d"));
-
-            if (FirstLettersCheckBox.IsChecked.Value)
-                action += p =>
-                {
-                    string output = "";
-                    p.ForEach(c => output += c.FamilyName[0]);
-                    AddToList(output);
-                };
-
-            return action;
-        }
-
-        private void ProcessDataButton_Click(object sender, RoutedEventArgs e)
-        {
-            OutputList.Items.Clear();
-            var people = People.GetPeople();
-
-            if (StringExpander.IsExpanded)
+        if (FirstLettersCheckBox.IsChecked!.Value)
+            action += p =>
             {
-                formatter = GetFormatter();
-                foreach (var person in people)
-                {
-                    AddToList(person.ToString(formatter));
-                }
-            }
-            if (ActionExpander.IsExpanded)
-            {
-                // DO NOT DO THIS
-                // (unless you hate your co-workers)
-                GetProcessor()?.Invoke(people);
-            }
-        }
+                string output = "";
+                p.ForEach(c => output += c.FamilyName[0]);
+                AddToList(output);
+            };
 
-        private void AddToList(string item)
+        return action;
+    }
+
+    private void ProcessDataButton_Click(object sender, RoutedEventArgs e)
+    {
+        OutputList.Items.Clear();
+
+        var people = People.GetPeople();
+
+        if (StringExpander.IsExpanded)
         {
-            OutputList.Items.Add(item);
+            formatter = GetFormatter();
+            foreach (var person in people)
+                AddToList(person.ToString(formatter));
         }
+        if (ActionExpander.IsExpanded)
+        {
+            // DO NOT DO THIS
+            // unless you hate your co-workers
+            AssignAction()?.Invoke(people);
+        }
+    }
+
+    private void AddToList(string item)
+    {
+        OutputList.Items.Add(item);
     }
 }

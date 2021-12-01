@@ -1,91 +1,75 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Data;
+﻿using System.Windows.Data;
 using System.Windows.Media;
 
-namespace delegates
+namespace delegates;
+
+/// <summary>
+/// For more information on the Value Converters, please
+/// see the "Data Templates and Value Converters" demo available
+/// at http://www.jeremybytes.com/Demos.aspx
+/// </summary>
+public class DecadeConverter : IValueConverter
 {
-    /// <summary>
-    /// For more information on the Value Converters, please
-    /// see the "Data Templates and Value Converters" demo available
-    /// at http://www.jeremybytes.com/Demos.aspx
-    /// </summary>
-    public class DecadeConverter : IValueConverter
+    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            int year = ((DateTime)value).Year;
-            return string.Format("{0}0s", year.ToString().Substring(0, 3));
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        int year = ((DateTime)value).Year;
+        return string.Format($"{year.ToString().Substring(0, 3)}0s");
     }
 
-    public class RatingConverter : IValueConverter
+    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            int rating = (int)value;
-            return string.Format("{0}/10 Stars", rating.ToString());
-        }
+        throw new NotImplementedException();
+    }
+}
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+public class RatingConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    {
+        int rating = (int)value;
+        return string.Format($"{rating}/10 Stars");
     }
 
-    public class RatingStarConverter : IValueConverter
+    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            int rating = (int)value;
-            string output = string.Empty;
-            return output.PadLeft(rating, '*');
-        }
+        throw new NotImplementedException();
+    }
+}
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            string input = (string)value;
-            //int rating = 0;
-
-            //foreach (var ch in input)
-            //    if (ch == '*')
-            //        rating++;
-
-            //return rating;
-
-            return input.Count(c => c == '*');
-        }
+public class RatingStarConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    {
+        int rating = (int)value;
+        string output = string.Empty;
+        return output.PadLeft(rating, '*');
     }
 
-    public class DecadeBrushConverter : IValueConverter
+    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            int decade = (((DateTime)value).Year / 10) * 10;
+        string input = (string)value;
+        return input.Count(c => c == '*');
+    }
+}
 
-            switch (decade)
-            {
-                case 1970:
-                    return new SolidColorBrush(Colors.Maroon);
-                case 1980:
-                    return new SolidColorBrush(Colors.DarkGreen);
-                case 1990:
-                    return new SolidColorBrush(Colors.DarkSlateBlue);
-                case 2000:
-                    return new SolidColorBrush(Colors.CadetBlue);
-                default:
-                    return new SolidColorBrush(Colors.DarkSlateGray);
-            }
-        }
+public class DecadeBrushConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    {
+        int decade = (((DateTime)value).Year / 10) * 10;
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        return decade switch
         {
-            throw new NotImplementedException();
-        }
+            1970 => new SolidColorBrush(Colors.Maroon),
+            1980 => new SolidColorBrush(Colors.DarkGreen),
+            1990 => new SolidColorBrush(Colors.DarkSlateBlue),
+            2000 => new SolidColorBrush(Colors.CadetBlue),
+            _ => new SolidColorBrush(Colors.DarkSlateGray),
+        };
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    {
+        throw new NotImplementedException();
     }
 }
