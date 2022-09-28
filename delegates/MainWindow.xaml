@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:delegates"
         mc:Ignorable="d"
-        Title="Get Func&lt;&gt;-y" Height="530" Width="955"
+        Title="Get Func&lt;&gt;-y" Height="610" Width="1200"
         WindowStartupLocation="CenterScreen">
     <Border x:Name="LayoutRoot" Padding="5"
             BorderBrush="{StaticResource ApplicationForeground}" BorderThickness="2" 
@@ -24,7 +24,7 @@
             <!-- List Box -->
             <ListBox x:Name="PersonListBox"
                      Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
-                     Margin="5" SelectionMode="Single" Width="490"
+                     Margin="5" SelectionMode="Single" Width="520"
                      BorderBrush="DarkSlateGray" BorderThickness="1"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      ItemTemplate="{StaticResource PersonListTemplate}">
@@ -67,7 +67,7 @@
             <!-- Fetch Button -->
             <Button x:Name="ProcessDataButton"
                     Grid.Column="1" Grid.Row="1"
-                    FontSize="16" Padding="7,3" Margin="5"
+                    FontSize="20" Padding="7,3" Margin="5"
                     Content="Process Data"
                     Style="{StaticResource GoButtonStyle}"
                     IsDefault="True"
@@ -76,7 +76,7 @@
             <!-- Output Panel -->
             <Border Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Margin="5" Padding="5"
                     BorderBrush="{StaticResource ApplicationTextForeground}" BorderThickness="1">
-                <ListBox x:Name="OutputList" FontSize="24">
+                <ListBox x:Name="OutputList" FontSize="28">
 
                 </ListBox>
             </Border>

@@ -30,7 +30,7 @@ public partial class MainWindow : Window
         return null;
     }
 
-    private Action<List<Person>>? AssignAction()
+    private Action<List<Person>>? GetAction()
     {
         Action<List<Person>>? action = null;
 
@@ -73,7 +73,7 @@ public partial class MainWindow : Window
         {
             // DO NOT DO THIS
             // unless you hate your co-workers
-            AssignAction()?.Invoke(people);
+            GetAction()?.Invoke(people);
         }
     }
 

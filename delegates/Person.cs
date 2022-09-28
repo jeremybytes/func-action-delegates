@@ -20,15 +20,15 @@ public static class People
     }
 }
 
-// public delegate string  PersonFormatter        (Person person);
-// public delegate TResult Func<in T, out TResult>(T arg);
+//public delegate string  PersonFormatter        (Person person);
+//public delegate TResult Func<in T, out TResult>(T arg);
 
 public record Person(int Id, string GivenName, string FamilyName,
     DateTime StartDate, int Rating, string FormatString = "")
 {
     public string ToString(Func<Person, string>? formatter)
     {
-        if (formatter == null)
+        if (formatter is null)
             return this.ToString();
         return formatter(this);
     }
