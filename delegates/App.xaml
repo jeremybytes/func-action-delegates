@@ -85,7 +85,7 @@
         <Style TargetType="Button" x:Key="GoButtonStyle">
             <Setter Property="Foreground" Value="{StaticResource ApplicationTextForeground}"/>
             <Setter Property="Background" Value="{StaticResource ApplicationBackground}"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Padding" Value="7,3"/>
             <Setter Property="Margin" Value="5"/>
@@ -156,7 +156,7 @@
         <Style TargetType="Button" x:Key="ClearButtonStyle">
             <Setter Property="Foreground" Value="{StaticResource ApplicationTextForeground}"/>
             <Setter Property="Background" Value="{StaticResource ApplicationBackground}"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Padding" Value="7,3"/>
             <Setter Property="Margin" Value="5"/>
@@ -164,9 +164,27 @@
         </Style>
 
         <!-- Application Styles -->
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="5, 3"/>
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="Padding" Value="3"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource ApplicationTextForeground}"/>
+            <Setter Property="FontSize" Value="22"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="HeaderText">
+            <Setter Property="Foreground" Value="{StaticResource ApplicationTextForeground}"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
         <Style TargetType="TextBlock" x:Key="ApplicationText">
             <Setter Property="Foreground" Value="{StaticResource ApplicationTextForeground}"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
@@ -180,21 +198,6 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
-        </Style>
-
-        <!-- Radio Button / Checkbox Styles -->
-        <Style TargetType="RadioButton">
-            <Setter Property="Foreground" Value="{StaticResource ApplicationTextForeground}"/>
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="Padding" Value="5,-2,0,0"/>
-            <Setter Property="Margin" Value="3"/>
-        </Style>
-
-        <Style TargetType="CheckBox">
-            <Setter Property="Foreground" Value="{StaticResource ApplicationTextForeground}"/>
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="Padding" Value="5,-2,0,0"/>
-            <Setter Property="Margin" Value="3"/>
         </Style>
 
         <!-- List Box Data Template -->
@@ -218,7 +221,7 @@
                         <TextBlock Text="{Binding}" 
                                    Style="{StaticResource ListItemTextStyle}" />
                     </StackPanel>
-                    <StackPanel Grid.Row="1" Grid.Column="1">
+                    <StackPanel Grid.Row="2" Grid.Column="1">
                         <TextBlock Text="{Binding StartDate.Year}"
                                    Style="{StaticResource ListTextStyle}" />
                         <TextBlock Text="{Binding Rating,

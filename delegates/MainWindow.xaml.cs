@@ -30,9 +30,9 @@ public partial class MainWindow : Window
         return null;
     }
 
-    private Action<List<Person>>? GetAction()
+    private Action<List<Person>> GetAction()
     {
-        Action<List<Person>>? action = null;
+        Action<List<Person>> action = p => { };
 
         if (BestCommanderCheckBox.IsChecked!.Value)
             action += p => MessageBox.Show(
@@ -72,8 +72,8 @@ public partial class MainWindow : Window
         if (ActionExpander.IsExpanded)
         {
             // DO NOT DO THIS
-            // unless you hate your co-workers
-            GetAction()?.Invoke(people);
+            // unless you really hate your co-workers
+            GetAction()(people);
         }
     }
 

@@ -64,6 +64,7 @@ public class DecadeBrushConverter : IValueConverter
             1980 => new SolidColorBrush(Colors.DarkGreen),
             1990 => new SolidColorBrush(Colors.DarkSlateBlue),
             2000 => new SolidColorBrush(Colors.CadetBlue),
+            2010 => new SolidColorBrush(Colors.DarkMagenta),
             _ => new SolidColorBrush(Colors.DarkSlateGray),
         };
     }

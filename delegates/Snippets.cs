@@ -24,16 +24,16 @@
 
 /* Assign Delegate
 
-            if (DefaultStringButton.IsChecked.Value)
+            if (DefaultStringButton.IsChecked!.Value)
                 return Formatters.Default;
 
-            if (FamilyNameStringButton.IsChecked.Value)
+            if (FamilyNameStringButton.IsChecked!.Value)
                 return Formatters.FamilyNameToUpper;
 
-            if (GivenNameStringButton.IsChecked.Value)
+            if (GivenNameStringButton.IsChecked!.Value)
                 return Formatters.GivenNameToLower;
 
-            if (FullNameStringButton.IsChecked.Value)
+            if (FullNameStringButton.IsChecked!.Value)
                 return Formatters.FullName;
 
             return null;
@@ -42,19 +42,19 @@
 
 /* Assign Action
 
-            if (AverageRatingCheckBox.IsChecked.Value)
+            if (AverageRatingCheckBox.IsChecked!.Value)
                 processor += p => AddToList(
                     p.Average(r => r.Rating).ToString("#.#"));
 
-            if (EarliestStartDateCheckBox.IsChecked.Value)
+            if (EarliestStartDateCheckBox.IsChecked!.Value)
                 processor += p => AddToList(
                     p.Min(s => s.StartDate).ToString("d"));
 
-            if (BestCommanderCheckBox.IsChecked.Value)
+            if (BestCommanderCheckBox.IsChecked!.Value)
                 processor += p => MessageBox.Show(
                     p.MaxBy(r => r.Rating)!.ToString());
 
-            if (FirstLettersCheckBox.IsChecked.Value)
+            if (FirstLettersCheckBox.IsChecked!.Value)
                 processor += p =>
                 {
                     string output = "";
